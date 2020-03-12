@@ -1,96 +1,97 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <br />
+    <center><b> Tennis Tetris</b></center>
+    <br /><br />
 
-<br><center><b> Tennis Tetris</b></center><br><br>
+    <canvas id="gameCanvas" width="1070" height="600"></canvas>
 
-<canvas id = "gameCanvas" width="1070" height="600"></canvas>
+    <script type="text/javascript">
+      var canvas;
+      var canvasContext;
+      var ballX = 50;
+      var ballY = 200; //or 200
+      var ballSpeedX = 10;
+      var ballSpeedY = 4;
 
-<script type="text/javascript">
-	var canvas;
-	var canvasContext;
-	var ballX = 50;
-	var ballY = 200; //or 200
-	var ballSpeedX = 10;
-	var ballSpeedY = 4;
+      window.onload = function() {
+        console.log("Hellew World!");
+        canvas = document.getElementById("gameCanvas");
+        canvasContext = canvas.getContext("2d");
 
+        // drawEverything();
+        // drawEverything();
+        // drawEverything();
+        var framesPerSecond = 30;
 
-	window.onload = function(){
-		console.log("Hellew World!");
-		canvas = document.getElementById('gameCanvas');
-		canvasContext = canvas.getContext('2d');
+        setInterval(function() {
+          moveEverything();
+          drawEverything();
+        }, 1000 / framesPerSecond);
+      };
 
-// drawEverything();
-// drawEverything();
-// drawEverything();
-var framesPerSecond = 30;
+      function moveEverything() {
+        ballX = ballX + ballSpeedX;
+        ballY = ballY + ballSpeedY;
 
-setInterval(function(){
-	moveEverything();
-	drawEverything();
-},1000/framesPerSecond);
+        if (ballX > canvas.width - 290) {
+          ballSpeedX = -ballSpeedX;
+        }
+        if (ballX < 10) {
+          ballSpeedX = -ballSpeedX;
+        }
 
-}
+        if (ballY > canvas.height) {
+          ballSpeedY = -ballSpeedY;
+        }
+        if (ballY < 10) {
+          ballSpeedY = -ballSpeedY;
+        }
+      }
 
-function moveEverything(){
-	ballX = ballX + ballSpeedX;
-	ballY = ballY + ballSpeedY;
+      function drawEverything() {
+        console.log("drawEverything called");
 
-	if(ballX > canvas.width-290){
-		ballSpeedX = -ballSpeedX;
-	}
-	if(ballX < 10){
-		ballSpeedX = -ballSpeedX;
-	}
+        colorRect(270, 0, canvas.width, canvas.height, "black");
+        // Draw a green player paddle
 
-	if(ballY > canvas.height){
-		ballSpeedY = -ballSpeedY;
-	}
-	if(ballY < 10){
-		ballSpeedY = -ballSpeedY;
-	}
-}
+        colorRect(270, 150, 10, 100, "green");
+        // Draw a blue player paddle
 
-function drawEverything(){
-	console.log("drawEverything called");
+        colorRect(1060, 150, 10, 100, "blue");
+        // Draw the ball , now we need to make it round
 
+        // colorRect(270+ballX,200,10,10,'red');
 
-	colorRect(270,0,canvas.width,canvas.height,'black');
-		// Draw a green player paddle
+        // TO MAKE RED BALL
 
-		colorRect(270,150,10,100,'green');
-		// Draw a blue player paddle
+        
 
-		colorRect(1060,150,10,100,'blue');
-		// Draw the ball , now we need to make it round
+        // canvasContext.arc(280+ballX, 200, 10, 0, Math.PI*2, true);
+        // canvasContext.fill();
+        colorCircle(280 + ballX, ballY, 10, "red");
+      }
 
-		// colorRect(270+ballX,200,10,10,'red');
+      function colorRect(leftX, topY, width, height, drawColor) {
+        canvasContext.fillStyle = drawColor;
+        canvasContext.fillRect(leftX, topY, width, height);
+      }
 
-		// TO MAKE RED BALL
-
-		// canvasContext.fillStyle = 'red';
-		// canvasContext.beginPath();
-
-		
-		// canvasContext.arc(280+ballX, 200, 10, 0, Math.PI*2, true);
-		// canvasContext.fill();
-		colorCircle(280+ballX, ballY, 10, 'red');
-
-
-	}
-
-	function colorRect(leftX,topY,width,height,drawColor){
-		canvasContext.fillStyle = drawColor;
-		canvasContext.fillRect(leftX,topY,width,height);
-	}
-
-	function colorCircle(centreX, centreY, radius, drawColor){
-		canvasContext.fillStyle = drawColor;
-		canvasContext.beginPath();
-		// Parameters 1=> start point, 2=> centre start point, 3=> radius of circle, 4 => how many radians? pi is half circle, 2*pi is full, 5=> clockwise rotation of arc true, else false
-		canvasContext.arc(centreX, centreY, radius, 0, Math.PI*2, true);
-		canvasContext.fill();
-	}
-
-
-</script>
-
+      function colorCircle(centreX, centreY, radius, drawColor) {
+        canvasContext.fillStyle = drawColor;
+        canvasContext.beginPath();
+        // Parameters 1=> start point, 2=> centre start point, 3=> radius of circle, 4 => how many radians? pi is half circle, 2*pi is full, 5=> clockwise rotation of arc true, else false
+        canvasContext.arc(centreX, centreY, radius, 0, Math.PI * 2, true);
+        canvasContext.fill();
+      }
+    </script>
+  </body>
 </html>
+
