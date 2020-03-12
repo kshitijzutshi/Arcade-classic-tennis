@@ -1,0 +1,60 @@
+<html>
+
+<br><center><b> Tennis Tetris</b></center><br><br>
+
+<canvas id = "gameCanvas" width="1070" height="600"></canvas>
+
+<script type="text/javascript">
+	var canvas;
+	var canvasContext;
+	var ballX = 50;
+
+
+
+	window.onload = function(){
+		console.log("Hellew World!");
+		canvas = document.getElementById('gameCanvas');
+		canvasContext = canvas.getContext('2d');
+
+// drawEverything();
+// drawEverything();
+// drawEverything();
+var framesPerSecond = 30;
+
+setInterval(function(){
+	moveEverything();
+	drawEverything();
+},1000/framesPerSecond);
+
+}
+
+function moveEverything(){
+	ballX = ballX + 5;
+}
+
+function drawEverything(){
+	console.log("drawEverything called");
+		// ballX+=5;
+		canvasContext.fillStyle = 'black';
+		canvasContext.fillRect(270,0, canvas.width, canvas.height);
+
+		canvasContext.fillStyle = 'green';
+		canvasContext.fillRect(270,150, 10,100);
+		canvasContext.fillStyle = 'blue';
+		canvasContext.fillRect(1060,150, 10,100);
+
+		canvasContext.fillStyle = 'red';
+		canvasContext.fillRect(270+ballX,200,10,10);
+// canvasContext.fillStyle = 'green';
+// canvasContext.fillRect(370,150, 600,300);
+
+// canvasContext.fillStyle = 'blue';
+// canvasContext.fillRect(270,0, 400, 200);
+
+// canvasContext.fillStyle = 'red';
+// canvasContext.fillRect(270,0, 200,100);
+}
+
+</script>
+
+</html>
