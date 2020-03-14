@@ -21,6 +21,23 @@
       var ballSpeedX = 10;
       var ballSpeedY = 4;
 
+      // Now to have the paddle to move w.r.t mouse pointer
+      var paddle1Y = 150;
+      const PADDLE_HEIGHT = 100;
+
+      // NOW DEFINE THE FUNCTION THAT CAL THE MOUSE POSITION AND ASSIGN THE Y COORD to PADDLE.
+      function calculateMousePos(evt) {
+        // console.log("In calculateMousePos function");
+        var rect = canvas.getBoundingClientRect();
+        var root = document.documentElement;
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
+      }
+
       window.onload = function() {
         console.log("Hellew World!");
         canvas = document.getElementById("gameCanvas");
@@ -35,6 +52,14 @@
           moveEverything();
           drawEverything();
         }, 1000 / framesPerSecond);
+        // console.log("before");
+        // Now the FUNCTION TO CALL THE MOVEMOUSE FUNCTION
+        canvas.addEventListener("mousemove", function(evt) {
+          var mousePos = calculateMousePos(evt);
+          paddle1Y = mousePos.y - PADDLE_HEIGHT / 2;
+          // console.log(mousePos.y);
+        });
+        // console.log("after");
       };
 
       function moveEverything() {
@@ -60,10 +85,10 @@
         console.log("drawEverything called");
 
         colorRect(270, 0, canvas.width, canvas.height, "black");
-        // Draw a green player paddle
+        // Draw a green player paddle Player 1
 
-        colorRect(270, 150, 10, 100, "green");
-        // Draw a blue player paddle
+        colorRect(270, paddle1Y, 10, 100, "green");
+        // Draw a blue player paddle  Player 2
 
         colorRect(1060, 150, 10, 100, "blue");
         // Draw the ball , now we need to make it round
@@ -71,9 +96,6 @@
         // colorRect(270+ballX,200,10,10,'red');
 
         // TO MAKE RED BALL
-
-        // canvasContext.fillStyle = 'red';
-        // canvasContext.beginPath();
 
         // canvasContext.arc(280+ballX, 200, 10, 0, Math.PI*2, true);
         // canvasContext.fill();
