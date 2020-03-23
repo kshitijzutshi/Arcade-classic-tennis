@@ -31,7 +31,7 @@
 
       var player1Score = 0;
       var player2Score = 0;
-      var winningScore = 10;
+      var winningScore = 100;
 
       // variable to pause game
       var showingWinScreen = false;
@@ -180,6 +180,13 @@ function computerMovement(){
         }
     }
 
+
+    function drawNet(){
+    	for (var i = 0; i< canvas.height; i+=40){
+    		colorRect(canvas.width/2+130,i,2,20, 'red');
+    	}
+    }
+
     function drawEverything() { //// no change here, shown for context
     	console.log("drawEverything called");
 
@@ -215,7 +222,7 @@ function computerMovement(){
 			return;
 }
 
-
+drawNet();
 colorRect(270, paddle1Y, PADDLE_THICKNESS, PADDLE_HEIGHT, "green");
         // Draw a blue player paddle  Player 2 
 
