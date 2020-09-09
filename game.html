@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,16 +40,16 @@
 
 
       // NOW DEFINE THE FUNCTION THAT CAL THE MOUSE POSITION AND ASSIGN THE Y COORD to PADDLE.
-      function calculateMousePos(evt){
-      	// console.log("In calculateMousePos function");
-      	var rect = canvas.getBoundingClientRect();
-      	var root = document.documentElement;
-      	var mouseX = evt.clientX - rect.left - root.scrollLeft;
-      	var mouseY = evt.clientY - rect.top - root.scrollTop;
-      	return{
-      		x:mouseX,
-      		y:mouseY
-      	};
+      function calculateMousePos(evt) {
+        // console.log("In calculateMousePos function");
+        var rect = canvas.getBoundingClientRect();
+        var root = document.documentElement;
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
       }
 
       function handleMouseClick(evt){
@@ -60,14 +62,19 @@
 
 
       window.onload = function() {
-      	console.log("Hellew World!");
-      	canvas = document.getElementById("gameCanvas");
-      	canvasContext = canvas.getContext("2d");
+        console.log("Hellew World!");
+        canvas = document.getElementById("gameCanvas");
+        canvasContext = canvas.getContext("2d");
+
+      
+
+    
 
  
         var framesPerSecond = 30;
 
         setInterval(function() {
+
         	moveEverything();
         	drawEverything();
         }, 1000 / framesPerSecond);
@@ -232,6 +239,7 @@ colorRect(270, paddle1Y, PADDLE_THICKNESS, PADDLE_HEIGHT, "green");
         // colorRect(270+ballX,200,10,10,'red');
 
         // TO MAKE RED BALL
+
 
         
 
